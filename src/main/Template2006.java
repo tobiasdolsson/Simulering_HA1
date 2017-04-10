@@ -11,7 +11,7 @@ public class Template2006 {
     	Event actEvent;
     	State actState = new State();
     	new EventList();
-        EventList.InsertEvent(G.ARRIVAL, 1);
+        EventList.InsertEvent(G.ARRIVAL_TO_1, 1);
         EventList.InsertEvent(G.MEASURE, 5);
     	while (G.time < 100000){
     		actEvent = EventList.FetchEvent();
