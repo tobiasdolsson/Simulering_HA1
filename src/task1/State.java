@@ -4,7 +4,7 @@ import java.util.*;
 import java.io.*;
 
 class State{
-	public int numberInQueue1 = 0, numberInQueue2 = 0, accumulated1 = 0, accumulated2 = 0, noMeasurements1 = 0, noMeasurements2 = 0;
+	public int numberInQueue1 = 0, numberInQueue2 = 0, accumulated1 = 0, accumulated2 = 0, noMeasurements = 0;
 	public int noArrivals1 = 0, noArrivals2 = 0;
 	public int rejected;
 	public int accRejected;
@@ -19,7 +19,6 @@ class State{
 				noArrivals1++;
 				//System.out.println(noArrivals1);
 				EventList.InsertEvent(G.ARRIVAL_TO_1, G.time + 1);
-				System.out.println(G.time);
 				if (numberInQueue1 < 10){
 					numberInQueue1++;
 				} else {
@@ -51,21 +50,14 @@ class State{
 				}
 			} break;
 			
-			case G.MEASURE_1:{
+			case G.MEASURE:{
 				accumulated1 = accumulated1 + numberInQueue1;
-				//accRejected = accRejected + rejected;
-				noMeasurements1++;
-				System.out.println("köres detta? "+noMeasurements1);
-				//System.out.println(G.time);
-				EventList.InsertEvent(G.MEASURE_1, G.time - (5.0)*Math.log(slump.nextDouble()));
-				//W.println(String.valueOf(numberInQueue1));
-			} break;
-			
-			case G.MEASURE2:{
 				accumulated2 = accumulated2 + numberInQueue2;
-				noMeasurements2++;
-				EventList.InsertEvent(G.MEASURE2, G.time - (5.0)*Math.log(slump.nextDouble()));
-				//W.println(String.valueOf(numberInQueue2));
+				//accRejected = accRejected + rejected;
+				noMeasurements++;
+				//System.out.println(G.time);
+				EventList.InsertEvent(G.MEASURE, G.time - (5.0)*Math.log(slump.nextDouble()));
+				//W.println(String.valueOf(numberInQueue1));
 			} break;
 			
 		}
