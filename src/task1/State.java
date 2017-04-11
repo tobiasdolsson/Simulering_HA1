@@ -57,7 +57,6 @@ class State {
 			accumulated2 = accumulated2 + numberInQueue2;
 			noMeasurements++;
 			EventList.InsertEvent(G.MEASURE, G.time - (5.0) * Math.log(slump.nextDouble()));
-			// W.println(String.valueOf(numberInQueue1));
 		}
 			break;
 
