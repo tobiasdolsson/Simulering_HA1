@@ -17,7 +17,7 @@ class State {
 		case G.ARRIVAL_TO_1: {
 
 			noArrivals1++;
-			EventList.InsertEvent(G.ARRIVAL_TO_1, G.time + 1);
+			EventList.InsertEvent(G.ARRIVAL_TO_1, G.time + 5);
 			if (numberInQueue1 < 10) {
 				numberInQueue1++;
 			} else {
