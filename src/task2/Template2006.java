@@ -12,7 +12,7 @@ public class Template2006 {
 		State actState = new State();
 		new EventList();
 		EventList.InsertEvent(G.JOB_OF_TYPE_A, 0);
-		EventList.InsertEvent(G.MEASURE, 5);
+		EventList.InsertEvent(G.MEASURE, 0.1);
 		while (actState.noMeasurements < 100000) {
 			actEvent = EventList.FetchEvent();
 			G.time = actEvent.eventTime;
