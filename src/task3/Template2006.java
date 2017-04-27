@@ -9,33 +9,63 @@ public class Template2006 {
 
 	public static void main(String[] args) throws IOException {
 		Event actEvent;
-		State actState = new State();
+		State actState1 = new State();
+		State actState2 = new State();
+		State actState3 = new State();
 		new EventList();
+		
+		actState1.arrivalTime = 2.0;
 		EventList.InsertEvent(G.ARRIVAL_TO_1, 0);
 		EventList.InsertEvent(G.MEASURE, 5);
-		while (actState.noMeasurements < 100000) {
+		while (actState1.noMeasurements < 100000) {
 			actEvent = EventList.FetchEvent();
 			G.time = actEvent.eventTime;
-			actState.TreatEvent(actEvent);
+			actState1.TreatEvent(actEvent);
 		}
-
-		System.out.println("Accumulated: " + actState.accumulated1);
-		System.out.println("Measurements: " + actState.noMeasurements);
-		System.out.println("Time: " + G.time);
-		System.out.println("Arrivals: " + actState.noArrivals1);
 		
-		System.out.println("Mean in Q1: " + 1.0 * actState.accumulated1 / actState.noMeasurements);
-		System.out.println("Mean in Q2: " + 1.0 * actState.accumulated2 / actState.noMeasurements);
-		//double Q1 = 1.0 * actState.accumulated1 / actState.noMeasurements;
-		//double Q2 = 1.0 * actState.accumulated2 / actState.noMeasurements;
-		System.out.println("Mean number of customers in queuing network: " + ((1.0 * actState.accumulated2 / actState.noMeasurements) + (1.0 * actState.accumulated1 / actState.noMeasurements)));
-		//System.out.println(Q1+Q2);
-		System.out.println("N: " + 2.0/(G.arrivalTime-1.0));
+		System.out.println("Mean arrival time = " + actState1.arrivalTime);
+		System.out.println("Mean in Q1: " + 1.0 * actState1.accumulated1 / actState1.noMeasurements);
+		System.out.println("Mean in Q2: " + 1.0 * actState1.accumulated2 / actState1.noMeasurements);
+		System.out.println("Mean number of customers in queuing network: " + ((1.0 * actState1.accumulated2 / actState1.noMeasurements) + (1.0 * actState1.accumulated1 / actState1.noMeasurements)));
+		System.out.println("Mean number of customers with formula: " + 2.0/(actState1.arrivalTime-1.0));
+		System.out.println("Mean time in queuing network: "+ actState1.totalTime/actState1.noArrivals1);
+		System.out.println("Mean time in queuing network with formula: " + (2.0*actState1.arrivalTime)/(actState1.arrivalTime-1.0));
 		
-		System.out.println("Mean time in queuing network: "+ G.time/actState.noArrivals1);
-		System.out.println("T: " + (2.0*G.arrivalTime)/(G.arrivalTime-1.0));
+		actState2.arrivalTime = 1.5;
+		EventList.InsertEvent(G.ARRIVAL_TO_1, 0);
+		EventList.InsertEvent(G.MEASURE, 5);
+		while (actState2.noMeasurements < 100000) {
+			actEvent = EventList.FetchEvent();
+			G.time = actEvent.eventTime;
+			actState2.TreatEvent(actEvent);
+		}
 		
-
-		actState.W.close();
+		System.out.println("\nMean arrival time = " + actState2.arrivalTime);
+		System.out.println("Mean in Q1: " + 1.0 * actState2.accumulated1 / actState2.noMeasurements);
+		System.out.println("Mean in Q2: " + 1.0 * actState2.accumulated2 / actState2.noMeasurements);
+		System.out.println("Mean number of customers in queuing network: " + ((1.0 * actState2.accumulated2 / actState2.noMeasurements) + (1.0 * actState2.accumulated1 / actState2.noMeasurements)));
+		System.out.println("Mean number of customers with formula: " + 2.0/(actState2.arrivalTime-1.0));
+		System.out.println("Mean time in queuing network: "+ actState2.totalTime/actState2.noArrivals1);
+		System.out.println("Mean time in queuing network with formula: " + (2.0*actState2.arrivalTime)/(actState2.arrivalTime-1.0));
+		
+		
+		actState3.arrivalTime = 1.1;
+		EventList.InsertEvent(G.ARRIVAL_TO_1, 0);
+		EventList.InsertEvent(G.MEASURE, 5);
+		while (actState3.noMeasurements < 100000) {
+			actEvent = EventList.FetchEvent();
+			G.time = actEvent.eventTime;
+			actState3.TreatEvent(actEvent);
+		}
+		
+		System.out.println("\nMean arrival time = " + actState3.arrivalTime);
+		System.out.println("Mean in Q1: " + 1.0 * actState3.accumulated1 / actState3.noMeasurements);
+		System.out.println("Mean in Q2: " + 1.0 * actState3.accumulated2 / actState3.noMeasurements);
+		System.out.println("Mean number of customers in queuing network: " + ((1.0 * actState3.accumulated2 / actState3.noMeasurements) + (1.0 * actState3.accumulated1 / actState3.noMeasurements)));
+		System.out.println("Mean number of customers with formula: " + 2.0/(actState3.arrivalTime-1.0));
+		System.out.println("Mean time in queuing network: "+ actState3.totalTime/actState3.noArrivals1);
+		System.out.println("Mean time in queuing network with formula: " + (2.0*actState3.arrivalTime)/(actState3.arrivalTime-1.0));
+		
+		
 	}
 }

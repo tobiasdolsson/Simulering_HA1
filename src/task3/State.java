@@ -9,6 +9,7 @@ class State {
 	public int rejected;
 	public int accRejected;
 	public double totalTime;
+	public double arrivalTime;
 	
 	/*public double arrivalTime = 2.0;
 	public double serviceTime1 = 1.0;
@@ -16,38 +17,42 @@ class State {
 	public double measureTime = 5.0;*/
 	
 	Random slump = new Random();
-	SimpleFileWriter W = new SimpleFileWriter("number.m", false);
+	//SimpleFileWriter W = new SimpleFileWriter("number.m", false);
 
 	public void TreatEvent(Event x) {
 		switch (x.eventType) {
 		case G.ARRIVAL_TO_1: {
 
 			noArrivals1++;
-			
-			EventList.InsertEvent(G.ARRIVAL_TO_1, G.time + expDest(G.arrivalTime));
+			totalTime = totalTime + (numberInQueue1 * expDest(G.serviceTime1));
+			EventList.InsertEvent(G.ARRIVAL_TO_1, G.time + expDest(arrivalTime));
 				numberInQueue1++;
 
 			if (numberInQueue1 == 1) {
-				/*double serviceTime = expDest(G.serviceTime1);
-				totalTime = totalTime + serviceTime;*/
-				EventList.InsertEvent(G.DEPARTURE_FROM_1, G.time + expDest(G.serviceTime1));
+				double serviceTime = expDest(G.serviceTime1);
+				totalTime = totalTime + serviceTime;
+				EventList.InsertEvent(G.DEPARTURE_FROM_1, G.time + serviceTime);
+				//EventList.InsertEvent(G.DEPARTURE_FROM_1, G.time + expDest(G.serviceTime1));
 			}
 
 		}
 			break;
 		case G.DEPARTURE_FROM_1: {
 			numberInQueue1--;
+			totalTime = totalTime + (numberInQueue1 * expDest(G.serviceTime2));
 			numberInQueue2++;
 			noArrivals2++;
 			if (numberInQueue2 == 1) {
-//				double serviceTime = expDest(G.serviceTime1);
-//				totalTime = totalTime + serviceTime;
-				EventList.InsertEvent(G.DEPARTURE_FROM_2, G.time + expDest(G.serviceTime2));
+				double serviceTime = expDest(G.serviceTime2);
+				totalTime = totalTime + serviceTime;
+				EventList.InsertEvent(G.DEPARTURE_FROM_2, G.time + serviceTime);
+				//EventList.InsertEvent(G.DEPARTURE_FROM_2, G.time + expDest(G.serviceTime2));
 			}
 			if (numberInQueue1 > 0) {
-				/*double serviceTime = expDest(G.serviceTime1);
-				totalTime = totalTime + serviceTime;*/
-				EventList.InsertEvent(G.DEPARTURE_FROM_1, G.time + expDest(G.serviceTime1));
+				double serviceTime = expDest(G.serviceTime1);
+				totalTime = totalTime + serviceTime;
+				EventList.InsertEvent(G.DEPARTURE_FROM_1, G.time + serviceTime);
+				//EventList.InsertEvent(G.DEPARTURE_FROM_1, G.time + expDest(G.serviceTime1));
 			}
 
 		}
@@ -56,9 +61,10 @@ class State {
 		case G.DEPARTURE_FROM_2: {
 			numberInQueue2--;
 			if (numberInQueue2 > 0) {
-				/*double serviceTime = expDest(G.serviceTime1);
-				totalTime = totalTime + serviceTime;*/
-				EventList.InsertEvent(G.DEPARTURE_FROM_2, G.time + expDest(G.serviceTime2));
+				double serviceTime = expDest(G.serviceTime2);
+				totalTime = totalTime + serviceTime;
+				EventList.InsertEvent(G.DEPARTURE_FROM_2, G.time + serviceTime);
+				//EventList.InsertEvent(G.DEPARTURE_FROM_2, G.time + expDest(G.serviceTime2));
 			}
 		}
 			break;
