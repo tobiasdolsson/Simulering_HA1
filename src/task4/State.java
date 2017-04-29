@@ -10,62 +10,58 @@ class State {
 	public int accRejected;
 	public int numberOfServers = 100;
 	public int busyServers = 0;
-	public double lambda = 1.0/4.0;
+	public double lambda = 1.0 / 4.0;
 
 	Random slump = new Random();
 	SimpleFileWriter W = new SimpleFileWriter("number.m", false);
 
 	public void TreatEvent(Event x) {
 		switch (x.eventType) {
-		
-		
+
 		case G.ARRIVAL_TO_1: {
 			noArrivals1++;
 			EventList.InsertEvent(G.ARRIVAL_TO_1, G.time + expDist(lambda));
-			
-			if(busyServers<numberOfServers){
+
+			if (busyServers < numberOfServers) {
 				busyServers++;
-			}else{
-				//System.out.println("rejected");
+			} else {
+
 			}
-			
-			if(busyServers==1){
+
+			if (busyServers == 1) {
 				EventList.InsertEvent(G.DEPARTURE_FROM_1, G.time + 10);
 			}
-			System.out.println(busyServers);		
+
 		}
-		
+
 			break;
-			
-			
+
 		case G.DEPARTURE_FROM_1: {
-			System.out.println("hej");
+
 			busyServers--;
-			if(busyServers>0){
+			if (busyServers > 0) {
 				EventList.InsertEvent(G.DEPARTURE_FROM_1, G.time + 10);
 			}
 
 		}
 			break;
-
 
 		case G.MEASURE: {
-			
-		
+
 			noMeasurements++;
 			EventList.InsertEvent(G.MEASURE, G.time + 4);
 			String customers = Integer.toString(busyServers);
-			
+
 			W.println(customers);
-			
+
 		}
 			break;
 
 		}
 	}
-	
-	private double expDist(double mean){
-		return -(mean)*Math.log(slump.nextDouble());
+
+	private double expDist(double mean) {
+		return -(mean) * Math.log(slump.nextDouble());
 	}
-	
+
 }
