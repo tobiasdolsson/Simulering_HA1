@@ -17,7 +17,7 @@ public class Template2006 {
 		actState1.arrivalTime = 2.0;
 		EventList.InsertEvent(G.ARRIVAL_TO_1, 0);
 		EventList.InsertEvent(G.MEASURE, 5);
-		while (actState1.noMeasurements < 10000) {
+		while (actState1.noMeasurements < 100000) {
 			actEvent = EventList.FetchEvent();
 			G.time = actEvent.eventTime;
 			actState1.TreatEvent(actEvent);
@@ -59,6 +59,7 @@ public class Template2006 {
 		}
 		
 		System.out.println("\nMean arrival time = " + actState3.arrivalTime);
+		System.out.println("Arrivals: " +actState3.noArrivals1);
 		System.out.println("Mean in Q1: " + 1.0 * actState3.accumulated1 / actState3.noMeasurements);
 		System.out.println("Mean in Q2: " + 1.0 * actState3.accumulated2 / actState3.noMeasurements);
 		System.out.println("Mean number of customers in queuing network: " + ((1.0 * actState3.accumulated2 / actState3.noMeasurements) + (1.0 * actState3.accumulated1 / actState3.noMeasurements)));

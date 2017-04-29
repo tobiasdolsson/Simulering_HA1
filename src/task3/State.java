@@ -10,6 +10,7 @@ class State {
 	public int accRejected;
 	public double totalTime;
 	public double arrivalTime;
+	//public Float accumulated12 = 0f;
 	
 	/*public double arrivalTime = 2.0;
 	public double serviceTime1 = 1.0;
@@ -41,6 +42,7 @@ class State {
 			numberInQueue1--;
 			totalTime = totalTime + (numberInQueue2 * expDest(G.serviceTime2));
 			numberInQueue2++;
+			//System.out.println(numberInQueue2);
 			noArrivals2++;
 			if (numberInQueue2 == 1) {
 				double serviceTime = expDest(G.serviceTime2);
@@ -72,6 +74,7 @@ class State {
 		case G.MEASURE: {
 			accumulated1 = accumulated1 + numberInQueue1;
 			accumulated2 = accumulated2 + numberInQueue2;
+			//System.out.println(accumulated1);
 			noMeasurements++;
 			EventList.InsertEvent(G.MEASURE, G.time + expDest(G.measureTime));
 		}
