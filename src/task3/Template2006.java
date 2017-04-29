@@ -17,7 +17,7 @@ public class Template2006 {
 		actState1.arrivalTime = 2.0;
 		EventList.InsertEvent(G.ARRIVAL_TO_1, 0);
 		EventList.InsertEvent(G.MEASURE, 5);
-		while (actState1.noMeasurements < 100000) {
+		while (actState1.noMeasurements < 10000) {
 			actEvent = EventList.FetchEvent();
 			G.time = actEvent.eventTime;
 			actState1.TreatEvent(actEvent);
@@ -34,7 +34,7 @@ public class Template2006 {
 		actState2.arrivalTime = 1.5;
 		EventList.InsertEvent(G.ARRIVAL_TO_1, 0);
 		EventList.InsertEvent(G.MEASURE, 5);
-		while (actState2.noMeasurements < 100000) {
+		while (actState2.noMeasurements < 10000) {
 			actEvent = EventList.FetchEvent();
 			G.time = actEvent.eventTime;
 			actState2.TreatEvent(actEvent);
@@ -52,7 +52,7 @@ public class Template2006 {
 		actState3.arrivalTime = 1.1;
 		EventList.InsertEvent(G.ARRIVAL_TO_1, 0);
 		EventList.InsertEvent(G.MEASURE, 5);
-		while (actState3.noMeasurements < 100000) {
+		while (actState3.noMeasurements < 10000) {
 			actEvent = EventList.FetchEvent();
 			G.time = actEvent.eventTime;
 			actState3.TreatEvent(actEvent);

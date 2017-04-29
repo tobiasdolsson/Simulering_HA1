@@ -39,7 +39,7 @@ class State {
 			break;
 		case G.DEPARTURE_FROM_1: {
 			numberInQueue1--;
-			totalTime = totalTime + (numberInQueue1 * expDest(G.serviceTime2));
+			totalTime = totalTime + (numberInQueue2 * expDest(G.serviceTime2));
 			numberInQueue2++;
 			noArrivals2++;
 			if (numberInQueue2 == 1) {
