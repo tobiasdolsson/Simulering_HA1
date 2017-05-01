@@ -13,9 +13,9 @@ public class Template2006 {
 		new EventList();
 		EventList.InsertEvent(G.ARRIVAL_TO_1, 0);
 		
-		EventList.InsertEvent(G.MEASURE, 4);
+		EventList.InsertEvent(G.MEASURE, 1);
 		
-		while (actState.noMeasurements < 4000) {
+		while (actState.noMeasurements < 1000) {
 			actEvent = EventList.FetchEvent();
 			G.time = actEvent.eventTime;
 			actState.TreatEvent(actEvent);
