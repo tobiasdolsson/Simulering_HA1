@@ -8,9 +8,9 @@ class State {
 	public int noArrivals1 = 0, noArrivals2 = 0;
 	public int rejected;
 	public int accRejected;
-	public int numberOfServers = 1000;
+	public int numberOfServers = 100;
 	public int busyServers = 0;
-	public double lambda = 1.0 / 8.0;
+	public double lambda = 1.0 / 4.0;
 
 	Random slump = new Random();
 	SimpleFileWriter W = new SimpleFileWriter("number.m", false);
@@ -24,7 +24,7 @@ class State {
 
 			if (busyServers < numberOfServers) {
 				busyServers++;
-				EventList.InsertEvent(G.DEPARTURE_FROM_1, G.time + 100);
+				EventList.InsertEvent(G.DEPARTURE_FROM_1, G.time + 10);
 			} else {
 				System.out.println("Rejected");
 			}
@@ -43,7 +43,7 @@ class State {
 		case G.MEASURE: {
 
 			noMeasurements++;
-			EventList.InsertEvent(G.MEASURE, G.time + 1);
+			EventList.InsertEvent(G.MEASURE, G.time + 4);
 			String customers = Integer.toString(busyServers);
 
 			W.println(customers);

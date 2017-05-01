@@ -25,12 +25,12 @@ class State {
 		case G.ARRIVAL_TO_1: {
 
 			noArrivals1++;
-			totalTime = totalTime + (numberInQueue1 * expDest(G.serviceTime1));
-			EventList.InsertEvent(G.ARRIVAL_TO_1, G.time + expDest(arrivalTime));
+			totalTime = totalTime + (numberInQueue1 * expDist(G.serviceTime1));
+			EventList.InsertEvent(G.ARRIVAL_TO_1, G.time + expDist(arrivalTime));
 				numberInQueue1++;
 
 			if (numberInQueue1 == 1) {
-				double serviceTime = expDest(G.serviceTime1);
+				double serviceTime = expDist(G.serviceTime1);
 				totalTime = totalTime + serviceTime;
 				EventList.InsertEvent(G.DEPARTURE_FROM_1, G.time + serviceTime);
 				//EventList.InsertEvent(G.DEPARTURE_FROM_1, G.time + expDest(G.serviceTime1));
@@ -40,18 +40,18 @@ class State {
 			break;
 		case G.DEPARTURE_FROM_1: {
 			numberInQueue1--;
-			totalTime = totalTime + (numberInQueue2 * expDest(G.serviceTime2));
+			totalTime = totalTime + (numberInQueue2 * expDist(G.serviceTime2));
 			numberInQueue2++;
 			//System.out.println(numberInQueue2);
 			noArrivals2++;
 			if (numberInQueue2 == 1) {
-				double serviceTime = expDest(G.serviceTime2);
+				double serviceTime = expDist(G.serviceTime2);
 				totalTime = totalTime + serviceTime;
 				EventList.InsertEvent(G.DEPARTURE_FROM_2, G.time + serviceTime);
 				//EventList.InsertEvent(G.DEPARTURE_FROM_2, G.time + expDest(G.serviceTime2));
 			}
 			if (numberInQueue1 > 0) {
-				double serviceTime = expDest(G.serviceTime1);
+				double serviceTime = expDist(G.serviceTime1);
 				totalTime = totalTime + serviceTime;
 				EventList.InsertEvent(G.DEPARTURE_FROM_1, G.time + serviceTime);
 				//EventList.InsertEvent(G.DEPARTURE_FROM_1, G.time + expDest(G.serviceTime1));
@@ -63,7 +63,7 @@ class State {
 		case G.DEPARTURE_FROM_2: {
 			numberInQueue2--;
 			if (numberInQueue2 > 0) {
-				double serviceTime = expDest(G.serviceTime2);
+				double serviceTime = expDist(G.serviceTime2);
 				totalTime = totalTime + serviceTime;
 				EventList.InsertEvent(G.DEPARTURE_FROM_2, G.time + serviceTime);
 				//EventList.InsertEvent(G.DEPARTURE_FROM_2, G.time + expDest(G.serviceTime2));
@@ -76,14 +76,14 @@ class State {
 			accumulated2 = accumulated2 + numberInQueue2;
 			//System.out.println(accumulated1);
 			noMeasurements++;
-			EventList.InsertEvent(G.MEASURE, G.time + expDest(G.measureTime));
+			EventList.InsertEvent(G.MEASURE, G.time + expDist(G.measureTime));
 		}
 			break;
 
 		}
 	}
 	
-	private double expDest(double mean){
+	private double expDist(double mean){
 		return -(mean)*Math.log(slump.nextDouble());
 	}
 	
