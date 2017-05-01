@@ -10,6 +10,7 @@ class State {
 	public int accRejected;
 	public int openingTime = 60 * 8;
 	public boolean closed = false;
+	public double timeForCustomer = 0.0;
 
 	Random slump = new Random();
 	SimpleFileWriter W = new SimpleFileWriter("number.m", false);
@@ -23,18 +24,23 @@ class State {
 			noArrivals1++;
 
 			if (G.time < openingTime) {
+
+				double serviceTime = 10 + 10 * slump.nextDouble();
+				timeForCustomer = timeForCustomer + (serviceTime * numberInQueue);
 				numberInQueue++;
 				EventList.InsertEvent(G.ARRIVAL_TO_1, G.time + expDist(15));
 
 			} else {
-				System.out.println("stängt");
+				// System.out.println("stängt");
 			}
 
 			if (numberInQueue == 1) {
+				// double temp = 10 + 10 * slump.nextDouble();
+				// timeForCustomer = timeForCustomer + temp;
 				EventList.InsertEvent(G.DEPARTURE_FROM_1, G.time + (10 + 10 * slump.nextDouble()));
 			}
 
-			if (G.time>openingTime){
+			if (G.time > openingTime) {
 				closed = true;
 			}
 
@@ -43,11 +49,12 @@ class State {
 			break;
 
 		case G.DEPARTURE_FROM_1: {
-			
+			// double temp = 10 + 10 * slump.nextDouble();
+			// timeForCustomer = timeForCustomer + (temp*numberInQueue);
 			numberInQueue--;
-			if(numberInQueue>0){
+			if (numberInQueue > 0) {
 				EventList.InsertEvent(G.DEPARTURE_FROM_1, G.time + (10 + 10 * slump.nextDouble()));
-				
+
 			}
 
 		}
@@ -56,8 +63,8 @@ class State {
 		case G.MEASURE: {
 
 			noMeasurements++;
-			EventList.InsertEvent(G.MEASURE, G.time + 4);
-			//System.out.println(numberInQueue);
+			EventList.InsertEvent(G.MEASURE, G.time + 100);
+			// System.out.println(timeForCustomer/noArrivals1);
 
 		}
 			break;
