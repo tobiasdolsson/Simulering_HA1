@@ -7,10 +7,8 @@ class State {
 	public int numberInQueue1 = 0, numberInQueue2 = 0, accumulated1 = 0, accumulated2 = 0, noMeasurements = 0;
 	public int noArrivals1 = 0, noArrivals2 = 0;
 	public int rejected;
-	public int accRejected;
 
 	Random slump = new Random();
-	SimpleFileWriter W = new SimpleFileWriter("number.m", false);
 
 	public void TreatEvent(Event x) {
 		switch (x.eventType) {

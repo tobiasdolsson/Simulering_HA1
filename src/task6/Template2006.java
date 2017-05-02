@@ -9,14 +9,13 @@ public class Template2006 {
 	public static void main(String[] args) throws IOException {
 		double totalTime = 0.0;
 		double meanCustomerTime = 0.0;
+		int numberOfDays = 1000;
 
-		for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < numberOfDays; i++) {
 			Event actEvent;
 			State actState = new State();
 			new EventList();
 			EventList.InsertEvent(G.ARRIVAL_TO_1, 0);
-
-			EventList.InsertEvent(G.MEASURE, 4);
 
 			while (actState.closed == false || actState.numberInQueue > 0) {
 				actEvent = EventList.FetchEvent();
@@ -27,13 +26,13 @@ public class Template2006 {
 			meanCustomerTime = meanCustomerTime + (actState.customerTime / actState.noArrivals);
 			
 		}
-		double minOfWork = totalTime / 1000.0;
+		double minOfWork = totalTime / (double)numberOfDays;
 		int hours = (int) minOfWork / 60;
 		int minutes = (int) minOfWork % 60;
 		
 		System.out.print("Work finished at: ");
 		System.out.printf("%d:%02d", hours + 9, minutes);
-		System.out.println("\nMean prescription time: " + meanCustomerTime / 1000);
+		System.out.println("\nMean prescription time: " + meanCustomerTime / (double)numberOfDays);
 
 	}
 }

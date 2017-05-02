@@ -19,15 +19,11 @@ public class Template2006 {
 			actState.TreatEvent(actEvent);
 		}
 
-		System.out.println("Accumulated: " + actState.accumulated1);
-		System.out.println("Measurements: " + actState.noMeasurements);
-		System.out.println("Time: " + G.time);
 		System.out.println("Arrivals: " + actState.noArrivals1);
 		System.out.println("Rejected: " + actState.rejected);
 		System.out.println("Rejected ratio: " + 1.0 * actState.rejected / actState.noArrivals1);
 		System.out.println("Mean in Q1: " + 1.0 * actState.accumulated1 / actState.noMeasurements);
 		System.out.println("Mean in Q2: " + 1.0 * actState.accumulated2 / actState.noMeasurements);
 
-		actState.W.close();
 	}
 }
