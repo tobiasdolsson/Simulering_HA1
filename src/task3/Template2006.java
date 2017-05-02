@@ -3,8 +3,6 @@ package task3;
 import java.util.*;
 import java.io.*;
 
-//testing commit
-
 public class Template2006 {
 
 	public static void main(String[] args) throws IOException {
@@ -16,7 +14,7 @@ public class Template2006 {
 		actState1.arrivalTime = 1.1;
 		EventList.InsertEvent(G.ARRIVAL_TO_1, 0);
 		EventList.InsertEvent(G.MEASURE, 5);
-		while (actState1.noMeasurements < 100000) {
+		while (actState1.noMeasurements < 1000000) {
 			actEvent = EventList.FetchEvent();
 			G.time = actEvent.eventTime;
 			actState1.TreatEvent(actEvent);

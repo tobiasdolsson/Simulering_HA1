@@ -3,8 +3,6 @@ package task4;
 import java.util.*;
 import java.io.*;
 
-//testing commit
-
 public class Template2006 {
 
 	public static void main(String[] args) throws IOException {

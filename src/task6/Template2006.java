@@ -3,7 +3,6 @@ package task6;
 import java.util.*;
 import java.io.*;
 
-
 public class Template2006 {
 
 	public static void main(String[] args) throws IOException {
