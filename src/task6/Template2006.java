@@ -25,7 +25,7 @@ public class Template2006 {
 			}
 			totalTime = totalTime + G.time;
 			meanCustomerTime = meanCustomerTime + (actState.customerTime / actState.noArrivals);
-
+			
 		}
 		double minOfWork = totalTime / 1000.0;
 		int hours = (int) minOfWork / 60;
